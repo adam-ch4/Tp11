@@ -1,36 +1,86 @@
-/**
- * @(#) Personne.java
- */
-
 package FFSSM;
 
 import java.time.LocalDate;
 
-import lombok.Getter;
-import lombok.Setter;
+public class Personne {
+	private String numeroINSEE;
+	private String nom;
+	private String prenom;
+	private String adresse;
+	private String telephone;
+	private LocalDate naissance;
+	private GroupeSanguin groupeSanguin;
+	private String allergie;
 
-public abstract class Personne{
+	public Personne(String numeroINSEE, String nom, String prenom,
+			String adresse, String telephone, LocalDate naissance) {
+		this.numeroINSEE = numeroINSEE;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		this.telephone = telephone;
+		this.naissance = naissance;
+	}
 
-	@Getter @Setter
-	public String numeroINSEE;
-	
-	@Getter @Setter
-	public String nom;
-	
-	@Getter @Setter
-	public String prenom;
-	
-	@Getter @Setter
-	public String adresse;
-	
-	@Getter @Setter
-	public String telephone;
-	
-	@Getter @Setter
-	public LocalDate naissance;
+	public Personne(String numeroINSEE, String nom, String prenom,
+			String adresse, String telephone, LocalDate naissance,
+			GroupeSanguin groupeSanguin, String allergie) {
+		this(numeroINSEE, nom, prenom, adresse, telephone, naissance);
+		this.groupeSanguin = groupeSanguin;
+		this.allergie = allergie;
+	}
 
-    public Personne(String nom) {
-        this.nom = nom;
-    }
+	// Getters et Setters
+	public String getNumeroINSEE() {
+		return numeroINSEE;
+	}
 
+	public String getNom() {
+		return nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public LocalDate getNaissance() {
+		return naissance;
+	}
+
+	public GroupeSanguin getGroupeSanguin() {
+		return groupeSanguin;
+	}
+
+	public void setGroupeSanguin(GroupeSanguin groupeSanguin) {
+		this.groupeSanguin = groupeSanguin;
+	}
+
+	public String getAllergie() {
+		return allergie;
+	}
+
+	public void setAllergie(String allergie) {
+		this.allergie = allergie;
+	}
+
+	@Override
+	public String toString() {
+		return "Personne{" + "nom=" + nom + ", prenom=" + prenom + '}';
+	}
 }

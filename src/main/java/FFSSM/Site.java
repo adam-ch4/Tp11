@@ -1,31 +1,38 @@
 package FFSSM;
 
-import lombok.Data;
-import lombok.NonNull;
-
-// On utilise lombok pour générer les getters et setters...
-// La bibliothèque est importée dans le fichier pom.xml
-
-// Lombok : génère getter / setter / constructeur, toString...
-// https://projectlombok.org/features/Data
-@Data
 public class Site {
-	@NonNull
 	private String nom;
-
-	@NonNull
 	private String details;
+	private int profondeurMaximale;
 
-	public static void main(String[] args) { // Un exemple des méthodes générées par lombok
+	public Site(String nom, String details, int profondeurMaximale) {
+		this.nom = nom;
+		this.details = details;
+		this.profondeurMaximale = profondeurMaximale;
+	}
 
-		// Constructeur avec les paramètres obligatoires
-		Site s = new Site("Site1", "Site1 details");
+	public String getNom() {
+		return nom;
+	}
 
-		// Setters
-		s.setNom("Mont Saint Michel");
-		s.setDetails("Plongee autour du Mont Saint Michel");
+	public String getDetails() {
+		return details;
+	}
 
-		// toString()
-		System.out.printf("Le site : %s\n", s);
+	public void setDetails(String details) {
+		this.details = details;
+	}
+
+	public int getProfondeurMaximale() {
+		return profondeurMaximale;
+	}
+
+	public void setProfondeurMaximale(int profondeurMaximale) {
+		this.profondeurMaximale = profondeurMaximale;
+	}
+
+	@Override
+	public String toString() {
+		return nom;
 	}
 }

@@ -1,55 +1,81 @@
-/**
- * @(#) Club.java
- */
 package FFSSM;
 
-import java.util.Set;
-
-import lombok.Getter;
-import lombok.Setter;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Club {
+    private String nom;
+    private String adresse;
+    private String telephone;
+    private Plongeur president;
+    private List<Plongeur> membres = new ArrayList<>();
+    private List<Plongee> plongeesOrganisees = new ArrayList<>();
+    private List<Embauche> embauches = new ArrayList<>();
 
-    @Getter @Setter
-    public DiplomeDeMoniteur president;
-
-    @Getter @Setter
-    public String nom;
-
-    @Getter @Setter
-    public String adresse;
-
-    @Getter @Setter
-    public String telephone;
-
-    public Club(DiplomeDeMoniteur president, String nom) {
-        this.president = president;
+    public Club(String nom, String adresse, String telephone) {
         this.nom = nom;
+        this.adresse = adresse;
+        this.telephone = telephone;
     }
 
-    /**
-     * Calcule l'ensemble des plongées non conformes organisées par ce club.
-     * Une plongée est conforme si tous les plongeurs de la palanquée ont une licence
-     * valide à la date de la plongée
-     * @return l'ensemble des plongées non conformes
-     */
-    public Set<Plongee> plongeesNonConformes() {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+    public void organisePlongee(Plongee plongee) {
+        if (!plongeesOrganisees.contains(plongee)) {
+            plongeesOrganisees.add(plongee);
+        }
     }
 
-    /**
-     * Enregistre une nouvelle plongée organisée par ce club
-     * @param p la nouvelle plongée
-     */
-    public void organisePlongee(Plongee p) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+    public void ajouteMembre(Plongeur plongeur) {
+        if (plongeur != null && !membres.contains(plongeur)) {
+            membres.add(plongeur);
+        }
     }
 
+    public void nouvelleEmbauche(Plongeur moniteur, LocalDate debut) {
+        if (moniteur != null && moniteur.estMoniteur()) {
+            Embauche embauche = new Embauche(debut, this, moniteur);
+            embauches.add(embauche);
+        }
+    }
 
-    @Override
-    public String toString() {
-        return "Club{" + "président=" + president + ", nom=" + nom + ", adresse=" + adresse + ", telephone=" + telephone + '}';
+    public List<Embauche> embauches() {
+        return embauches;
+    }
+
+    // Getters
+    public String getNom() {
+        return nom;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public Plongeur getPresident() {
+        return president;
+    }
+
+    public void setPresident(Plongeur president) {
+        this.president = president;
+    }
+
+    public List<Plongeur> getMembres() {
+        return membres;
+    }
+
+    public List<Plongee> getPlongeesOrganisees() {
+        return plongeesOrganisees;
     }
 }
